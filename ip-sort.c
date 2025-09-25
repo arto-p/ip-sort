@@ -1,6 +1,6 @@
 /* =====================================================================================
  *
- *       Filename:  ip-sort.c
+ *       Filename: ip-sort.c
  *
  *    Description: ip addr sort 
  *
@@ -10,7 +10,7 @@
  *       Compiler:  gcc
  *
  *         Author:  YOUR NAME (), 
- *   Organization:  
+ *   Organization:  Private disorganize person
  *
  * =====================================================================================
  */
@@ -22,10 +22,10 @@
 #include <arpa/inet.h>
 #include <ctype.h>
 
-#define O1(a) ((((uint32_t)a) >> 24) & 0xFF)
-#define O2(a) ((((uint32_t)a) >> 16) & 0xFF)
-#define O3(a) ((((uint32_t)a) >> 8)  & 0xFF)
-#define O4(a) ((((uint32_t)a) >> 0)  & 0xFF)
+#define OCTET1(a) ((((uint32_t)a) >> 24) & 0xFF)
+#define OCTET2(a) ((((uint32_t)a) >> 16) & 0xFF)
+#define OCTET3(a) ((((uint32_t)a) >> 8)  & 0xFF)
+#define OCTET4(a) ((((uint32_t)a) >> 0)  & 0xFF)
 
 #define ADDRS_SIZE 1024
 
@@ -74,19 +74,20 @@ int main(int argc, char **argv)
     }
     // First byte == 1
     for (int i = 0; i < addrs_count; i++) {
-        if (O4(addrs[i]) == 1) {
+        if (OCTET4(addrs[i]) == 1) {
             printf("%s\n", inet_ntoa((struct in_addr){ .s_addr = addrs[i] }));
         }
     }
     // First byte == 46, second byte == 70
     for (int i = 0; i < addrs_count; i++) {
-        if (O4(addrs[i]) == 46 && O3(addrs[i]) == 70) {
+        if (OCTET4(addrs[i]) == 46 && OCTET3(addrs[i]) == 70) {
             printf("%s\n", inet_ntoa((struct in_addr){ .s_addr = addrs[i] }));
         }
     }
     // Any byte == 46
     for (int i = 0; i < addrs_count; i++) {
-        if (O4(addrs[i]) == 46 || O3(addrs[i]) == 46 || O2(addrs[i]) == 46 || O1(addrs[i]) == 46) {
+        if (OCTET4(addrs[i]) == 46 || OCTET3(addrs[i]) == 46 ||
+            OCTET2(addrs[i]) == 46 || OCTET1(addrs[i]) == 46) {
             printf("%s\n", inet_ntoa((struct in_addr){ .s_addr = addrs[i] }));
         }
     }
