@@ -10,7 +10,7 @@
  *       Compiler:  gcc
  *
  *         Author:  YOUR NAME (), 
- *   Organization:  Private disorganize person
+ *   Organization:  Private disorganized person
  *
  * =====================================================================================
  */
@@ -22,10 +22,10 @@
 #include <arpa/inet.h>
 #include <ctype.h>
 
-#define OCTET1(a) ((((uint32_t)a) >> 24) & 0xFF)
-#define OCTET2(a) ((((uint32_t)a) >> 16) & 0xFF)
-#define OCTET3(a) ((((uint32_t)a) >> 8)  & 0xFF)
-#define OCTET4(a) ((((uint32_t)a) >> 0)  & 0xFF)
+#define OCTET1(a) ((((uint32_t) (a)) >> 24) & 0xFF)
+#define OCTET2(a) ((((uint32_t) (a)) >> 16) & 0xFF)
+#define OCTET3(a) ((((uint32_t) (a)) >> 8)  & 0xFF)
+#define OCTET4(a) ((((uint32_t) (a)) >> 0)  & 0xFF)
 
 #define ADDRS_SIZE 1024
 
