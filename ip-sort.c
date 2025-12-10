@@ -56,6 +56,14 @@ static int cmpr(const void *a, const void *b)
 int main(int argc, char **argv)
 {
     char buffer[512], *pc;
+
+    if (argc > 1) {
+        if ((stdin = freopen(argv[1], "r", stdin)) == NULL) {
+            fprintf(stderr, "failed to open %s: %s\n", argv[1], strerror(errno));
+            exit(EXIT_FAILURE);
+        }
+    }
+
     while (fgets(buffer, sizeof(buffer), stdin) != NULL) {
         if ((pc = strchr(buffer, '\t')) != NULL) *pc = '\0';
         in_addr_t addr = inet_addr(buffer);
